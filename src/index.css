@@ -1,0 +1,441 @@
+body {
+  background-color: rgb(49, 79, 199);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.home-page {
+  width: 80%;
+  height: 600px;
+  background-color: rgb(249, 249, 249);
+  margin: 30px auto;
+  border-radius: 20px;
+  display: flex;
+
+}
+
+.robot{
+  width: 45%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+h1 {
+  font-size: 100px;
+  color: rgb(93, 93, 219);
+  margin-top: 80px;
+}
+
+.second-string {
+  font-size: 25px;
+  color: rgb(15, 15, 113);
+  font-weight: 900;
+  margin: 30px 0;
+}
+
+.icon-foot {
+  display: flex;
+  flex-direction: row;
+  margin: 50px 0;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  margin: 15px;
+}
+
+.icon {
+  width: 50px;
+  margin-right: 5px;
+}
+.text-icon {
+  font-size: 15px;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  color: white;
+  width: 80%;
+  margin: 0 auto;
+  font-size: 25px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+}
+
+.username {
+  color: rgb(174, 174, 174);
+  font-weight: bold;
+}
+
+.btn-exit {
+  background-color: brown;
+  border: 1 solid black;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.page {
+  min-height: 90vh;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f6fa;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+
+.card {
+  background-color: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  width: 40%;
+}
+
+.logo-inside {
+  font-size: 30px;
+  text-align: center;
+}
+
+.tittle-inside {
+  text-align: center;
+  color: rgb(93, 93, 219);
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.label {
+  color: rgb(72, 72, 72);
+  font-size: 16px;
+}
+
+.input {
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid rgb(72, 72, 72);
+  outline: none;
+  min-width: 200px;
+}
+
+.input-file {
+  border: none;
+  padding: 10px 0;
+}
+
+.field-error {
+  color: #ff1900;
+  font-size: 14px;
+}
+
+.error {
+  color: #ff1900;
+  background-color: #ffeaea;
+  font-size: 14px;
+  padding: 10px;
+}
+
+.btn-register-login {
+  background-color: #6884a1;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.btn-register-login:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 25px;
+  color: rgb(72, 72, 72);
+  font-size: 14px;
+}
+
+.link-footer {
+  color: #2b3c4d;
+  font-weight: bold;
+}
+
+.notification {
+
+  background-color: white;
+  color: black;
+  padding: 10px 15px;
+  border-radius: 8px;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.storage-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.upload-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.subtitle {
+  color: #2b3c4d;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.upload-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.btn-sbmt {
+  background-color: #2c3e50;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-sbmt:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message {
+  text-align: center;
+  color: #777;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.file-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.file-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.file-name {
+  font-weight: bold;
+  color: #2b3c4d;
+  font-size: 16px;
+}
+
+.meta {
+  display: flex;
+  gap: 10px;
+  color: #2b3c4d;
+  font-size: 12px;
+  flex-wrap: wrap;
+}
+
+.file-comment {
+  color: #777;
+  font-size: 11px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-download {
+  background-color: rgb(55, 182, 55);
+}
+
+.btn-rename {
+  background-color: rgb(87, 87, 244);
+}
+
+.btn-copy {
+  background-color: rgb(255, 154, 3);
+}
+
+.btn-delete {
+  background-color: rgb(249, 33, 33);
+}
+
+.btn-save {
+  background-color: rgb(5, 223, 150);
+}
+
+.btn-cancel {
+  background-color: #0b63c1;
+}
+
+.btn-download, .btn-rename, .btn-copy, .btn-delete, .btn-save, .btn-cancel {
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.rename-form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+
+.input-rename {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid gray;
+  font-size: 14px;
+}
+
+.admin-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admin-title {
+  color: #2c3e50;
+  margin: 0;
+}
+
+.table-wrapper {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  overflow: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.header-row {
+  color: white;
+  background-color: rgb(49, 79, 199);
+}
+
+th {
+  padding: 10px;
+  text-align: left;
+  font-weight: 600;
+}
+
+td {
+  padding: 12px;
+  vertical-align: middle;
+}
+
+.your-badge {
+  font-size: 12px;
+  color: rgb(0, 200, 255);
+}
+
+.btn-open-storage {
+  background-color: transparent;
+  color: #2980b9;
+  border: 1px solid #2980b9;
+  padding: 7px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.badge {
+ font-size: 14px;
+
+}
+
+.btn-delete-admin {
+  width: 120px;
+  background-color: rgb(255, 50, 50);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  padding: 10px;
+}
+
+.btn-right {
+  width: 120px;
+  background-color: #0b63c1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  padding: 10px;
+}

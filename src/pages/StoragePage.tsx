@@ -141,8 +141,22 @@ export default function StoragePage() {
   const handleCopyLink = async (id: number) => {
     try {
       const response = await getSpecialLink(id)
-      // crl C :)
-      await navigator.clipboard.writeText(response.data.special_link)
+      const link = response.data.special_link
+      // crl C :) HTTPS
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(link)
+      } else {
+      // запасной способ для HTTP
+      const textarea = document.createElement('textarea')
+      textarea.value = link
+      textarea.style.position = 'fixed'
+      textarea.style.opacity = '0'
+      document.body.append(textarea)
+      textarea.focus()
+      textarea.select()
+      document.execCommand('copy')
+      textarea.remove()
+    }
       showNotification('Ссылка скопирована')
     } catch {
       showNotification('Не удалось скопировать ссылку ')

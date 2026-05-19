@@ -4,7 +4,7 @@ import type { LoginData, RegisterData, RenameData } from '../types'
 
 // базовый урл бэкенда
 const api = axios.create({
-  baseURL: 'http://localhost:8000/api',
+  baseURL: 'http://168.222.142.98/api',
   withCredentials: true,  //cookies с сессией
 })
 

@@ -72,8 +72,12 @@ export default function StoragePage() {
     formData.append('file', selectedFile)
     formData.append('comment', comment)
 
+    if (userId && isAdmin) {
+      formData.append('user_id', userId)
+    }
+    setIsUploading(true)
+
     try {
-      setIsUploading(true)
       await uploadFile(formData)
       setSelectedFile(null)
       setComment('')

@@ -21,6 +21,7 @@ export default function StoragePage() {
   const [files, setFiles] = useState<FileItemType[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [storageOwner, setStorageOwner] = useState<string>('')
 
   //загрузка нового файла
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
@@ -38,12 +39,15 @@ export default function StoragePage() {
   const fetchFiles = async () => {
     try {
       setIsLoading(true)
-      //если передан userId и мы=админ, доступна зазгрузка чужих файлов
-      const response = userId && isAdmin 
-      ? await getFilesByUser(Number(userId)) 
-      : await getFiles()
-
-      setFiles(response.data)
+      if (userId && isAdmin) {
+        const response = await getFilesByUser(Number(userId))
+        setFiles(response.data)
+        setStorageOwner(`пользователя ID: ${userId}`)
+      } else {
+        const response = await getFiles()
+        setFiles(response.data)
+        setStorageOwner(currentUser?.username || '')
+      }
     } catch {
       setError('Ошибка при загрузке файла')
       console.log('error api GET')
@@ -170,7 +174,7 @@ export default function StoragePage() {
 
       <div className='storage-container'>
         <h2 className='tittle-inside '>
-          Хранилище — {currentUser?.username}
+          Хранилище — {storageOwner}
         </h2>
 
         {/* Форма загрузки файла */}

@@ -19,6 +19,40 @@ export default function RegisterPage() {
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [isLoading, setIsLoading] = useState(false)
 
+  //переносим валидацию на фронт для улучшения UX
+  const validateForm = (): boolean => {
+    const newErrors: Record<string, string> = {}
+
+    //login
+    if (!/^[a-zA-Z][a-zA-Z0-9]{3,19}$/.test(formData.username)) {
+      newErrors.username = 'Только латиница и цифры, первый символ — буква, длина от 4 до 20 символов'
+    }
+
+    //email
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Необходимо ввести корректный email'
+    }
+
+    //password
+    if (formData.password.length < 6) {
+      newErrors.password = 'Пароль должен содержать минимум 6 символов'
+    } else if (!/[A-Z]/.test(formData.password)) {
+      newErrors.password = 'Пароль должен содержать хотя бы одну заглавную букву'
+    } else if (!/[0-9]/.test(formData.password)) {
+      newErrors.password = 'Пароль должен содержать хотя бы одну цифру'
+    } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(formData.password)) {
+      newErrors.password = 'Пароль должен содержать хотя бы один специальный символ, (например, !, @, #, $, %, ^, &, *, (, )'
+    }
+
+    //full name
+    if (formData.full_name.trim().length < 1) {
+      newErrors.full_name = 'Введите ваше полное имя'
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData(prev => ({
       ...prev,
@@ -36,7 +70,10 @@ export default function RegisterPage() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setErrors({})
+
+    //валидация данных
+    if (!validateForm) return
+
     setIsLoading(true)
 
     try{

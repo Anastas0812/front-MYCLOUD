@@ -19,36 +19,63 @@ export default function RegisterPage() {
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [isLoading, setIsLoading] = useState(false)
 
-  //переносим валидацию на фронт для улучшения UX
+  //валидация каждого инпута регистрации 
+  const validateField = (name: string, value: string): string => {
+    switch (name) {
+      case 'username':
+        if (!/^[a-zA-Z][a-zA-Z0-9]{3,19}$/.test(value)) {
+          return 'Только латиница и цифры, первый символ — буква, длина от 4 до 20 символов'
+        }
+        return ''
+
+        case 'email':
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+            return 'Необходимо ввести корректный email'
+          }
+          return ''
+
+        case 'password':
+          if (value.length < 6) {
+            return 'Пароль должен содержать минимум 6 символов'
+          }
+          if (!/[A-Z]/.test(value)) {
+            return 'Пароль должен содержать хотя бы одну заглавную букву'
+          }
+          if (!/[0-9]/.test(value)) {
+            return 'Пароль должен содержать хотя бы одну цифру'
+          }
+          if (!/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
+            return 'Пароль должен содержать хотя бы один специальный символ, (например, !, @, #, $, %, ^, &, *, (, )'
+          }
+          return ''
+
+        case 'full_name':
+          if (value.trim().length < 1) {
+            return 'Введите ваше полное имя'
+          }
+          return ''
+
+        default:
+          return ''    
+    }
+  }
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    const error = validateField(name, value)
+    setErrors(prev => ({
+      ...prev,
+      [name]: error
+    }))
+  }
+
+  //валидация всей формы 
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {}
-
-    //login
-    if (!/^[a-zA-Z][a-zA-Z0-9]{3,19}$/.test(formData.username)) {
-      newErrors.username = 'Только латиница и цифры, первый символ — буква, длина от 4 до 20 символов'
-    }
-
-    //email
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Необходимо ввести корректный email'
-    }
-
-    //password
-    if (formData.password.length < 6) {
-      newErrors.password = 'Пароль должен содержать минимум 6 символов'
-    } else if (!/[A-Z]/.test(formData.password)) {
-      newErrors.password = 'Пароль должен содержать хотя бы одну заглавную букву'
-    } else if (!/[0-9]/.test(formData.password)) {
-      newErrors.password = 'Пароль должен содержать хотя бы одну цифру'
-    } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(formData.password)) {
-      newErrors.password = 'Пароль должен содержать хотя бы один специальный символ, (например, !, @, #, $, %, ^, &, *, (, )'
-    }
-
-    //full name
-    if (formData.full_name.trim().length < 1) {
-      newErrors.full_name = 'Введите ваше полное имя'
-    }
-
+    Object.entries(formData).forEach(([name, value]) => {
+      const error = validateField(name, value)
+      if (error) newErrors[name] = error
+    })
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
@@ -72,7 +99,7 @@ export default function RegisterPage() {
     e.preventDefault()
 
     //валидация данных
-    if (!validateForm) return
+    if (!validateForm()) return
 
     setIsLoading(true)
 
@@ -121,6 +148,7 @@ export default function RegisterPage() {
               name="username"
               value={formData.username}
               onChange={handleChange}
+              onBlur={handleBlur}
               placeholder="Только латиница и цифры, от 4 до 20 символов"
             />
             {errors.username && (
@@ -135,6 +163,7 @@ export default function RegisterPage() {
               name="full_name"
               value={formData.full_name}
               onChange={handleChange}
+              onBlur={handleBlur}
               placeholder="Например: Иванова Анастасия"
             />
             {errors.full_name && (
@@ -149,6 +178,7 @@ export default function RegisterPage() {
               name="email"
               value={formData.email}
               onChange={handleChange}
+              onBlur={handleBlur}
               placeholder="example@mail.ru"
             />
             {errors.email && (
@@ -163,6 +193,7 @@ export default function RegisterPage() {
               name="password"
               value={formData.password}
               onChange={handleChange}
+              onBlur={handleBlur}
               placeholder="Мин. 6 символов, заглавная буква, цифра, спецсимвол"
             />
             {errors.password && (
